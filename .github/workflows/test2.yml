@@ -9,7 +9,7 @@ on:
         required: false
       KERNEL_TREE:
         description: 'Kernel Tree'
-        default: 'https://github.com/re-noroi/Realking_kernel_sm8250.git'
+        default: 'https://github.com/babay162/Realking_kernel_sm8250.git'
         required: true
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
@@ -21,7 +21,7 @@ on:
         required: true
       ANYKERNEL_URL:
         description: 'AnyKernel Url (leave blank if you dont want AnyKernel)'
-        default: 'https://github.com/re-noroi/n0kfork-zip-alioth'
+        default: 'https://github.com/babay162/n0kfork-alioth'
         required: false
       ANYKERNEL_BRANCH:
         description: 'AnyKernel Branch (defaults to codename)'
@@ -112,7 +112,7 @@ jobs:
         if [ -e "Image.gz" ]; then
           cp -f Image.gz AnyKernel3
         fi
-        name=N0Fork-noksu-${{ github.event.inputs.CODENAME }}-${{ github.run_id }}.zip
+        name=NAPIoverissue-test${{ github.event.inputs.CODENAME }}-${{ github.run_id }}.zip
         cd AnyKernel3
         zip -q -r $name *
         mv $name ../
