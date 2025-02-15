@@ -1,4 +1,4 @@
-name: Kernel Build TEST (alioth) - clang-r547379 noksu
+name: NAPI-overissue-TEST
 
 on:
   pull_request:
