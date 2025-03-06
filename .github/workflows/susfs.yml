@@ -14,7 +14,7 @@ on:
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
         required: true
-        default: 'apolio'
+        default: 'main'
       CODENAME:
         description: 'Phone Codename'
         default: 'alioth'
@@ -91,7 +91,6 @@ jobs:
     - name: Building kernel
       run: |
         git submodule init && git submodule update
-        bash ksu.sh
         export ARCH=arm64
         export SUBARCH=ARM64
         export KBUILD_BUILD_USER="babay"
