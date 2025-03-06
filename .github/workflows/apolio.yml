@@ -1,10 +1,10 @@
 name: Overissue - clang-r547379 next-susfs
 
 on:
-  pull_request:⁷
+  pull_request:
   workflow_dispatch:
     inputs:
-      BUILD_TITLE:⁷⁸⁸
+      BUILD_TITLE:
         description: 'Custom Build Title'
         required: false
       KERNEL_TREE:
