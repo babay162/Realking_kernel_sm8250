@@ -1,4 +1,4 @@
-name: Kernel Build TEST (alioth) - clang-r547379 ksun susfs
+name: Overissue - clang-r547379 next-susfs
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
         required: false
       KERNEL_TREE:
         description: 'Kernel Tree'
-        default: 'https://github.com/babay162/Realking_kernel_sm8250.git'
+        default: 'https://github.com/babay162/Realking_kernel_sm8250'
         required: true
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
@@ -49,7 +49,7 @@ jobs:
         echo "AnyKernel Url: ${{ github.event.inputs.ANYKERNEL_URL }}/tree/${{ github.event.inputs.ANYKERNEL_BRANCH }}"
         echo "Second AnyKernel Url: ${{ github.event.inputs.SECOND_ANYKERNEL_URL }}/tree/${{ github.event.inputs.SECOND_ANYKERNEL_BRANCH }}"
         echo "::endgroup::"
-  
+
     - name: Install prerequisites
       run: |
         sudo apt-get update
@@ -60,6 +60,7 @@ jobs:
         sudo apt-get install -y g++-aarch64-linux-gnu file jq perl tar sudo unzip
         sudo apt-get install -y pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl 
         sudo apt-get install -y zip unzip tar gzip bzip2 rar unrar llvm g++-multilib bison gperf zlib1g-dev automake
+
 
     - name: Initialize workspace
       run: |
@@ -90,6 +91,7 @@ jobs:
     - name: Building kernel
       run: |
         git submodule init && git submodule update
+        bash ksu.sh
         export ARCH=arm64
         export SUBARCH=ARM64
         export KBUILD_BUILD_USER="babay"
@@ -112,7 +114,14 @@ jobs:
         if [ -e "Image.gz" ]; then
           cp -f Image.gz AnyKernel3
         fi
-        name=Overissue-ksun-susfs-${{ github.event.inputs.CODENAME }}-${{ github.run_id }}.zip
+        if [ -e "dtb" ]; then
+          cp -f dtb AnyKernel3/alioth-normal-dtb
+        fi
+        # Check if dtbo.img exists, then copy it to AnyKernel3 folder
+        if [ -e "dtbo.img" ]; then
+          cp -f dtbo.img AnyKernel3/alioth-aosp-dtbo.img
+        fi
+        name=Overissue-susfs-${{ github.event.inputs.CODENAME }}-${{ github.run_id }}.zip
         cd AnyKernel3
         zip -q -r $name *
         mv $name ../
@@ -123,14 +132,13 @@ jobs:
     - name: Check the output directory before uploading
       run: |
         ls -al ${{ steps.kernel.outputs.kernel-folder }}/out/arch/arm64/boot/
-
     - name: Upload to Release
       if: ${{ github.event.inputs.UPLOAD_TO_RELEASE == 'true' }}
       uses: softprops/action-gh-release@v2
       with:
         files: |
           ${{ steps.kernel.outputs.kernel-folder }}/out/arch/arm64/boot/${{ steps.anykernel.outputs.zipname }}
-        name: ${{ github.event.inputs.CODENAME }}-${{ github.run_id }}-NOKSU
+        name: ${{ github.event.inputs.CODENAME }}-${{ github.run_id }}-MAGIC
         tag_name: ${{ github.run_id }}
         body: |
           <b>${{ steps.workspace.outputs.build_title }}</b>
