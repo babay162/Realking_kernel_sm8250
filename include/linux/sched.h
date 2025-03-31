@@ -1532,6 +1532,9 @@ struct task_struct {
 	struct mutex			futex_exit_mutex;
 #endif
 
+	ANDROID_KABI_RESERVE(7);
+	ANDROID_KABI_RESERVE(8);
+	
 	/*
 	 * New fields for task_struct should be added above here, so that
 	 * they are included in the randomized portion of task_struct.
