@@ -188,7 +188,7 @@ unsigned long sysctl_clean_low_kbytes __read_mostly = CONFIG_CLEAN_LOW_KBYTES;
 unsigned long sysctl_clean_min_kbytes __read_mostly = CONFIG_CLEAN_MIN_KBYTES;
 
 /*
- * From 0 .. 100.  Higher means more swappy.
+ * From 0 .. 200.  Higher means more swappy.
  */
 int vm_swappiness = 100;
  
@@ -2567,7 +2567,7 @@ prepare_workingset_protection(pgdat, sc);
 	 * This scanning priority is essentially the inverse of IO cost.
 	 */
 	anon_prio = swappiness;
-	file_prio = 100 - anon_prio;
+	file_prio = 200 - anon_prio;
 
 	/*
 	 * OK, so we have swap space and a fair amount of page cache
