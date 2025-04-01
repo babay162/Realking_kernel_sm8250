@@ -1531,19 +1531,14 @@ struct task_struct {
 #endif
 	struct mutex			futex_exit_mutex;
 #endif
-
-	/* bca62a0ae565 ("sched/tune: Fix improper accounting of tasks") */
- #ifdef CONFIG_SCHED_TUNE
- 	ANDROID_KABI_USE(7, int stune_idx);
- #else
  	ANDROID_KABI_RESERVE(7);
- #endif
+#endif
 	
- #ifdef CONFIG_KSU_SUSFS
+#ifdef CONFIG_KSU_SUSFS
  	ANDROID_KABI_USE(8, u64 susfs_last_fake_mnt_id);
- #else
+#else
  	ANDROID_KABI_RESERVE(8);
- #endif
+#endif
 	
 	/*
 	 * New fields for task_struct should be added above here, so that
