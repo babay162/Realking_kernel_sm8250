@@ -1528,10 +1528,8 @@ struct task_struct {
 #if defined(CONFIG_KSU_SUSFS)
  	u64 susfs_task_state;
 #endif
-#else
 	struct mutex			futex_exit_mutex;
 #endif
-#else
 	ANDROID_KABI_RESERVE(7);
 #endif
 #ifdef CONFIG_KSU_SUSFS
@@ -2298,4 +2296,5 @@ extern inline void set_inherit_top_app(struct task_struct *p,
 					struct task_struct *from);
 extern inline void restore_inherit_top_app(struct task_struct *p);
 #endif /* CONFIG_MIHW */
+
 #endif
