@@ -1529,9 +1529,9 @@ struct task_struct {
  	u64 susfs_task_state;
 #endif
 	struct mutex			futex_exit_mutex;
-#endif
+
 	ANDROID_KABI_RESERVE(7);
-#endif
+
 #ifdef CONFIG_KSU_SUSFS
  	ANDROID_KABI_USE(8, u64 susfs_last_fake_mnt_id);
 #else
