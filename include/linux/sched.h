@@ -2296,5 +2296,4 @@ extern inline void set_inherit_top_app(struct task_struct *p,
 					struct task_struct *from);
 extern inline void restore_inherit_top_app(struct task_struct *p);
 #endif /* CONFIG_MIHW */
-
 #endif
