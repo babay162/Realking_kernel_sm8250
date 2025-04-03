@@ -155,11 +155,11 @@ jobs:
         run: |
           cp Image-original.gz AnyKernel3/Image.gz
           if [ -e "dtb-original.img" ]; then
-          mv -f dtb-original.img dtb1
+          cp -f dtb-original.img dtb1
           cp -f dtb1 AnyKernel3/alioth-normal-dtb
           fi
           if [ -e "dtb-modified.img" ]; then
-          mv -f dtb-modified.img dtb2
+          cp -f dtb-modified.img dtb2
           cp -f dtb2 AnyKernel3/alioth-effcpu-dtb
           fi
           cp dtbo-original.img AnyKernel3/alioth-aosp-dtbo.img || true
