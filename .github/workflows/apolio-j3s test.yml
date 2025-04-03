@@ -14,7 +14,7 @@ on:
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
         required: true
-        default: 'freesia'
+        default: 'apolio-j3s'
       CODENAME:
         description: 'Phone Codename'
         default: 'alioth'
