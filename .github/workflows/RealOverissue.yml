@@ -34,13 +34,11 @@ on:
 
 jobs:
   build:
-  if: github.event.repository.owner.id == github.event.sender.id
     strategy:
       matrix:
         kernel: [1, 2]
         type: [original, modified]
     runs-on: ubuntu-latest
-          contents: write
     env:
       UPLOAD_TO_RELEASE: false
 
