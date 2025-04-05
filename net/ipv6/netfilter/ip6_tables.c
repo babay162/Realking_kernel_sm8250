@@ -171,6 +171,7 @@ static const char *const comments[] = {
 	[NF_IP6_TRACE_COMMENT_POLICY]	= "policy",
 };
 
+#ifdef CONFIG_DEBUG_KERNEL
 static const struct nf_loginfo trace_loginfo = {
 	.type = NF_LOG_TYPE_LOG,
 	.u = {
@@ -180,6 +181,7 @@ static const struct nf_loginfo trace_loginfo = {
 		},
 	},
 };
+#endif
 
 /* Mildly perf critical (only if packet tracing is on) */
 static inline int
@@ -235,10 +237,11 @@ static void trace_packet(struct net *net,
 		if (get_chainname_rulenum(iter, e, hookname,
 		    &chainname, &comment, &rulenum) != 0)
 			break;
-
+#ifdef CONFIG_DEBUG_KERNEL
 	nf_log_trace(net, AF_INET6, hook, skb, in, out, &trace_loginfo,
 		     "TRACE: %s:%s:%s:%u ",
 		     tablename, chainname, comment, rulenum);
+#endif				
 }
 #endif
 
