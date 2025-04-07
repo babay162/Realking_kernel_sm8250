@@ -7,15 +7,15 @@
 };
 
 &CPU4 {
-	dynamic-power-coefficient = <510>;
+	dynamic-power-coefficient = <520>;
 };
 
 &CPU5 {
-	dynamic-power-coefficient = <510>;
+	dynamic-power-coefficient = <520>;
 };
 
 &CPU6 {
-	dynamic-power-coefficient = <510>;
+	dynamic-power-coefficient = <520>;
 };
 
 &CPU7 {
