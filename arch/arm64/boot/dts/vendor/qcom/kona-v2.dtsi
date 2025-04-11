@@ -7,19 +7,19 @@
 };
 
 &CPU4 {
-	dynamic-power-coefficient = <520>;
+	dynamic-power-coefficient = <535>;
 };
 
 &CPU5 {
-	dynamic-power-coefficient = <520>;
+	dynamic-power-coefficient = <535>;
 };
 
 &CPU6 {
-	dynamic-power-coefficient = <520>;
+	dynamic-power-coefficient = <535>;
 };
 
 &CPU7 {
-	dynamic-power-coefficient = <630>;
+	dynamic-power-coefficient = <645>;
 };
 
 &clock_camcc {
